@@ -78,7 +78,7 @@ with open(csvpath) as electionData:
     #if treu the set winning count =votes and winning percent=vote percent 
              winning_count=votes
              winning_percent=vote_percent 
-             winning_candidtae=candidate_name
+             winning_candidate=candidate_name
 winning_summary=(
      f"------------------\n"
      f"Winner :{winning_candidate}\n"
