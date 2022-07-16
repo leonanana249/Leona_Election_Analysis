@@ -21,6 +21,7 @@
 
     #print(election_data)
 
+from cgitb import text
 import csv
 
 import os 
@@ -64,27 +65,41 @@ with open(csvpath) as electionData:
             candidate_votes[candidate_name]=0
         #add vote to the candidate count 
         candidate_votes[candidate_name]+=1
-    for candidate_name in candidate_votes: 
-    #retrive candidate vote count 
-        votes=candidate_votes[candidate_name]
-    #calculate percentage of votes 
-        vote_percent=float(votes)/float(total_votes)*100
+    #save the results to our text file 
+    with open(csvSave,"w") as text_file:
+        election_results=(
+                f"\nElection Results\n"
+                f"----------------------\n"
+                f"Total Votes:{total_votes :,}\n"
+                f"----------------------\n"
+        )
+        print(election_results, end="")
+        #save teh final vote count in text file 
+        text_file.write(election_results)
+        for candidate_name in candidate_votes: 
+        #retrive candidate vote count 
+            votes=candidate_votes[candidate_name]
+        #calculate percentage of votes 
+            vote_percent=float(votes)/float(total_votes)*100
 
-        print(f"{candidate_name}: {vote_percent:.1f}% ({votes:,})\n")   
-#determine the wining vote count and candidate 
-#determine if the votes are greater than the wining count 
+        # print(f"{candidate_name}: {vote_percent:.1f}% ({votes:,})\n")   
+            candidate_results=(f"{candidate_name}: {vote_percent:.1f}% ({votes:,})\n") 
+            text_file.write(candidate_results)
+    #determine the wining vote count and candidate 
+    #determine if the votes are greater than the wining count 
 
-        if (votes>winning_count) and (vote_percent>winning_percent):
-    #if treu the set winning count =votes and winning percent=vote percent 
-             winning_count=votes
-             winning_percent=vote_percent 
-             winning_candidate=candidate_name
-winning_summary=(
-     f"------------------\n"
-     f"Winner :{winning_candidate}\n"
-     f"Winner Vote Count: {winning_count:,}\n"
-     f"Winner Vote Percentage: {winning_percent:.1f}%\n"
-    f"--------------------\n")
-#3 Printe the candidate list 
-                      
-print(winning_summary)
+            if (votes>winning_count) and (vote_percent>winning_percent):
+        #if treu the set winning count =votes and winning percent=vote percent 
+                winning_count=votes
+                winning_percent=vote_percent 
+                winning_candidate=candidate_name
+        winning_summary=(
+            f"------------------\n"
+            f"Winner :{winning_candidate}\n"
+            f"Winner Vote Count: {winning_count:,}\n"
+            f"Winner Vote Percentage: {winning_percent:.1f}%\n"
+            f"--------------------\n")
+        text_file.write(winning_summary)
+    #3 Printe the candidate list 
+                        
+    #print(winning_summary)
