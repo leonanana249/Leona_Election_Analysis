@@ -7,7 +7,7 @@ A Colorado Board of Elections employee has given you the following tasks to comp
 4. Determine the winner of the election based on popular vote. 
 
 
-##Resources 
+## Resources 
 - Data Source: election_results.csv
 - Software: Python 3.7.6, Visual Studio Code, 1.38.1
 
@@ -23,5 +23,5 @@ The analysis of the election show that:
   - Diana DeGette received 73.8% of the votes, and 272,892 votes.
   - Raymon Anthony Doane 3.1% of the votes, and 11,606 votes.
   
-  ## Challenge Overview 
-  ## Challenge Summary 
+## Challenge Overview 
+## Challenge Summary 
